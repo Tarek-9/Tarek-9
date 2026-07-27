@@ -1,0 +1,29 @@
+name: Update profile art
+
+# Only the heatmap needs refreshing - the donut and the info card are static and get
+# regenerated locally when their content changes.
+"on":
+  schedule:
+    - cron: "17 6 * * *"
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  heatmap:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r scripts/requirements.txt
+      - run: python scripts/update_heatmap.py
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          # [skip ci] so the bot's own commit does not retrigger the push trigger
+          commit_message: "chore: refresh contribution heatmap [skip ci]"
+          file_pattern: "data/contributions.json contrib-heatmap.svg"
