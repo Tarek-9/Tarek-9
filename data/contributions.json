@@ -1,12 +1,12 @@
 {
  "user": "Tarek-9",
- "generated": "2026-09-11",
- "total": 3187,
- "current_streak": 48,
- "longest_streak": 48,
+ "generated": "2026-09-12",
+ "total": 3486,
+ "current_streak": 49,
+ "longest_streak": 49,
  "best_day": {
   "date": "2026-09-06",
-  "count": 115
+  "count": 149
  },
  "days": [
   {
@@ -292,14 +292,14 @@
   {
    "date": "2026-06-14",
    "count": 33,
-   "level": 2,
+   "level": 1,
    "week": 40,
    "row": 0
   },
   {
    "date": "2026-06-21",
    "count": 35,
-   "level": 2,
+   "level": 1,
    "week": 41,
    "row": 0
   },
@@ -327,7 +327,7 @@
   {
    "date": "2026-07-19",
    "count": 29,
-   "level": 2,
+   "level": 1,
    "week": 45,
    "row": 0
   },
@@ -362,20 +362,20 @@
   {
    "date": "2026-08-23",
    "count": 87,
-   "level": 4,
+   "level": 3,
    "week": 50,
    "row": 0
   },
   {
    "date": "2026-08-30",
-   "count": 71,
+   "count": 85,
    "level": 3,
    "week": 51,
    "row": 0
   },
   {
    "date": "2026-09-06",
-   "count": 115,
+   "count": 149,
    "level": 4,
    "week": 52,
    "row": 0
@@ -621,7 +621,7 @@
   {
    "date": "2026-05-04",
    "count": 69,
-   "level": 3,
+   "level": 2,
    "week": 34,
    "row": 1
   },
@@ -739,14 +739,14 @@
   },
   {
    "date": "2026-08-31",
-   "count": 61,
-   "level": 3,
+   "count": 67,
+   "level": 2,
    "week": 51,
    "row": 1
   },
   {
    "date": "2026-09-07",
-   "count": 46,
+   "count": 55,
    "level": 2,
    "week": 52,
    "row": 1
@@ -1034,7 +1034,7 @@
   {
    "date": "2026-06-16",
    "count": 95,
-   "level": 4,
+   "level": 3,
    "week": 40,
    "row": 2
   },
@@ -1103,21 +1103,21 @@
   },
   {
    "date": "2026-08-25",
-   "count": 84,
+   "count": 92,
    "level": 3,
    "week": 50,
    "row": 2
   },
   {
    "date": "2026-09-01",
-   "count": 84,
-   "level": 3,
+   "count": 114,
+   "level": 4,
    "week": 51,
    "row": 2
   },
   {
    "date": "2026-09-08",
-   "count": 54,
+   "count": 62,
    "level": 2,
    "week": 52,
    "row": 2
@@ -1426,7 +1426,7 @@
   {
    "date": "2026-07-08",
    "count": 30,
-   "level": 2,
+   "level": 1,
    "week": 43,
    "row": 3
   },
@@ -1474,14 +1474,14 @@
   },
   {
    "date": "2026-08-26",
-   "count": 62,
-   "level": 3,
+   "count": 67,
+   "level": 2,
    "week": 50,
    "row": 3
   },
   {
    "date": "2026-09-02",
-   "count": 55,
+   "count": 59,
    "level": 2,
    "week": 51,
    "row": 3
@@ -1489,7 +1489,7 @@
   {
    "date": "2026-09-09",
    "count": 34,
-   "level": 2,
+   "level": 1,
    "week": 52,
    "row": 3
   },
@@ -1839,7 +1839,7 @@
   {
    "date": "2026-08-20",
    "count": 69,
-   "level": 3,
+   "level": 2,
    "week": 49,
    "row": 4
   },
@@ -1852,14 +1852,14 @@
   },
   {
    "date": "2026-09-03",
-   "count": 71,
+   "count": 76,
    "level": 3,
    "week": 51,
    "row": 4
   },
   {
    "date": "2026-09-10",
-   "count": 44,
+   "count": 56,
    "level": 2,
    "week": 52,
    "row": 4
@@ -2147,7 +2147,7 @@
   {
    "date": "2026-06-19",
    "count": 59,
-   "level": 3,
+   "level": 2,
    "week": 40,
    "row": 5
   },
@@ -2175,7 +2175,7 @@
   {
    "date": "2026-07-17",
    "count": 36,
-   "level": 2,
+   "level": 1,
    "week": 44,
    "row": 5
   },
@@ -2210,28 +2210,28 @@
   {
    "date": "2026-08-21",
    "count": 88,
-   "level": 4,
+   "level": 3,
    "week": 49,
    "row": 5
   },
   {
    "date": "2026-08-28",
    "count": 59,
-   "level": 3,
+   "level": 2,
    "week": 50,
    "row": 5
   },
   {
    "date": "2026-09-04",
-   "count": 63,
+   "count": 77,
    "level": 3,
    "week": 51,
    "row": 5
   },
   {
    "date": "2026-09-11",
-   "count": 42,
-   "level": 2,
+   "count": 125,
+   "level": 4,
    "week": 52,
    "row": 5
   },
@@ -2511,7 +2511,7 @@
   {
    "date": "2026-06-13",
    "count": 102,
-   "level": 4,
+   "level": 3,
    "week": 39,
    "row": 6
   },
@@ -2525,7 +2525,7 @@
   {
    "date": "2026-06-27",
    "count": 31,
-   "level": 2,
+   "level": 1,
    "week": 41,
    "row": 6
   },
@@ -2581,7 +2581,7 @@
   {
    "date": "2026-08-22",
    "count": 68,
-   "level": 3,
+   "level": 2,
    "week": 49,
    "row": 6
   },
@@ -2594,9 +2594,16 @@
   },
   {
    "date": "2026-09-05",
-   "count": 66,
-   "level": 3,
+   "count": 72,
+   "level": 2,
    "week": 51,
+   "row": 6
+  },
+  {
+   "date": "2026-09-12",
+   "count": 61,
+   "level": 2,
+   "week": 52,
    "row": 6
   }
  ]
