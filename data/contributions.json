@@ -1,9 +1,9 @@
 {
  "user": "Tarek-9",
- "generated": "2026-10-07",
- "total": 4750,
- "current_streak": 74,
- "longest_streak": 74,
+ "generated": "2026-10-08",
+ "total": 5026,
+ "current_streak": 75,
+ "longest_streak": 75,
  "best_day": {
   "date": "2026-09-12",
   "count": 236
@@ -264,14 +264,14 @@
   {
    "date": "2026-06-14",
    "count": 33,
-   "level": 2,
+   "level": 1,
    "week": 36,
    "row": 0
   },
   {
    "date": "2026-06-21",
    "count": 35,
-   "level": 2,
+   "level": 1,
    "week": 37,
    "row": 0
   },
@@ -299,7 +299,7 @@
   {
    "date": "2026-07-19",
    "count": 29,
-   "level": 2,
+   "level": 1,
    "week": 41,
    "row": 0
   },
@@ -334,7 +334,7 @@
   {
    "date": "2026-08-23",
    "count": 87,
-   "level": 4,
+   "level": 3,
    "week": 46,
    "row": 0
   },
@@ -361,7 +361,7 @@
   },
   {
    "date": "2026-09-20",
-   "count": 58,
+   "count": 84,
    "level": 3,
    "week": 50,
    "row": 0
@@ -593,7 +593,7 @@
   {
    "date": "2026-05-04",
    "count": 69,
-   "level": 3,
+   "level": 2,
    "week": 30,
    "row": 1
   },
@@ -649,7 +649,7 @@
   {
    "date": "2026-06-29",
    "count": 75,
-   "level": 3,
+   "level": 2,
    "week": 38,
    "row": 1
   },
@@ -712,7 +712,7 @@
   {
    "date": "2026-08-31",
    "count": 67,
-   "level": 3,
+   "level": 2,
    "week": 47,
    "row": 1
   },
@@ -1006,7 +1006,7 @@
   {
    "date": "2026-06-16",
    "count": 95,
-   "level": 4,
+   "level": 3,
    "week": 36,
    "row": 2
   },
@@ -1076,7 +1076,7 @@
   {
    "date": "2026-08-25",
    "count": 92,
-   "level": 4,
+   "level": 3,
    "week": 46,
    "row": 2
   },
@@ -1090,13 +1090,13 @@
   {
    "date": "2026-09-08",
    "count": 62,
-   "level": 3,
+   "level": 2,
    "week": 48,
    "row": 2
   },
   {
    "date": "2026-09-15",
-   "count": 85,
+   "count": 101,
    "level": 3,
    "week": 49,
    "row": 2
@@ -1117,7 +1117,7 @@
   },
   {
    "date": "2026-10-06",
-   "count": 43,
+   "count": 70,
    "level": 2,
    "week": 52,
    "row": 2
@@ -1398,7 +1398,7 @@
   {
    "date": "2026-07-08",
    "count": 30,
-   "level": 2,
+   "level": 1,
    "week": 39,
    "row": 3
   },
@@ -1447,34 +1447,34 @@
   {
    "date": "2026-08-26",
    "count": 67,
-   "level": 3,
+   "level": 2,
    "week": 46,
    "row": 3
   },
   {
    "date": "2026-09-02",
    "count": 59,
-   "level": 3,
+   "level": 2,
    "week": 47,
    "row": 3
   },
   {
    "date": "2026-09-09",
    "count": 34,
-   "level": 2,
+   "level": 1,
    "week": 48,
    "row": 3
   },
   {
    "date": "2026-09-16",
-   "count": 69,
+   "count": 89,
    "level": 3,
    "week": 49,
    "row": 3
   },
   {
    "date": "2026-09-23",
-   "count": 28,
+   "count": 29,
    "level": 1,
    "week": 50,
    "row": 3
@@ -1488,8 +1488,8 @@
   },
   {
    "date": "2026-10-07",
-   "count": 39,
-   "level": 2,
+   "count": 94,
+   "level": 3,
    "week": 52,
    "row": 3
   },
@@ -1811,7 +1811,7 @@
   {
    "date": "2026-08-20",
    "count": 69,
-   "level": 3,
+   "level": 2,
    "week": 45,
    "row": 4
   },
@@ -1838,14 +1838,14 @@
   },
   {
    "date": "2026-09-17",
-   "count": 85,
+   "count": 98,
    "level": 3,
    "week": 49,
    "row": 4
   },
   {
    "date": "2026-09-24",
-   "count": 27,
+   "count": 30,
    "level": 1,
    "week": 50,
    "row": 4
@@ -1855,6 +1855,13 @@
    "count": 25,
    "level": 1,
    "week": 51,
+   "row": 4
+  },
+  {
+   "date": "2026-10-08",
+   "count": 31,
+   "level": 1,
+   "week": 52,
    "row": 4
   },
   {
@@ -2112,7 +2119,7 @@
   {
    "date": "2026-06-19",
    "count": 59,
-   "level": 3,
+   "level": 2,
    "week": 36,
    "row": 5
   },
@@ -2140,7 +2147,7 @@
   {
    "date": "2026-07-17",
    "count": 36,
-   "level": 2,
+   "level": 1,
    "week": 40,
    "row": 5
   },
@@ -2175,14 +2182,14 @@
   {
    "date": "2026-08-21",
    "count": 88,
-   "level": 4,
+   "level": 3,
    "week": 45,
    "row": 5
   },
   {
    "date": "2026-08-28",
    "count": 59,
-   "level": 3,
+   "level": 2,
    "week": 46,
    "row": 5
   },
@@ -2202,7 +2209,7 @@
   },
   {
    "date": "2026-09-18",
-   "count": 65,
+   "count": 91,
    "level": 3,
    "week": 49,
    "row": 5
@@ -2210,7 +2217,7 @@
   {
    "date": "2026-09-25",
    "count": 34,
-   "level": 2,
+   "level": 1,
    "week": 50,
    "row": 5
   },
@@ -2469,7 +2476,7 @@
   {
    "date": "2026-06-13",
    "count": 102,
-   "level": 4,
+   "level": 3,
    "week": 35,
    "row": 6
   },
@@ -2483,7 +2490,7 @@
   {
    "date": "2026-06-27",
    "count": 31,
-   "level": 2,
+   "level": 1,
    "week": 37,
    "row": 6
   },
@@ -2539,7 +2546,7 @@
   {
    "date": "2026-08-22",
    "count": 68,
-   "level": 3,
+   "level": 2,
    "week": 45,
    "row": 6
   },
@@ -2553,7 +2560,7 @@
   {
    "date": "2026-09-05",
    "count": 72,
-   "level": 3,
+   "level": 2,
    "week": 47,
    "row": 6
   },
@@ -2566,7 +2573,7 @@
   },
   {
    "date": "2026-09-19",
-   "count": 92,
+   "count": 150,
    "level": 4,
    "week": 49,
    "row": 6
