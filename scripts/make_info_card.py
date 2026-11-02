@@ -6,7 +6,7 @@ opacity:0, so a renderer that ignores CSS animation still shows the card.
 
 from theme import ACCENT, DIM, FG, KEY, esc
 
-TITLE = "Tarek El Hussain"
+TITLE = "Tarek ElHussain"
 # Skills, not tools - tools change, these don't. Training mirrors hub's src/data/trainings.tsx.
 ROWS = [
     ("Skills", ["Web & mobile apps, end to end", "Accessible UI (WCAG)",

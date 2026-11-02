@@ -2,7 +2,7 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./img/header-dark.svg" />
-  <img src="./img/header-light.svg" width="860" alt="Terminal typing whoami. Output: Tarek El Hussain, building software from first idea to production, and keeping it running." />
+  <img src="./img/header-light.svg" width="860" alt="Terminal typing whoami. Output: Tarek ElHussain, building software from first idea to production, and keeping it running." />
 </picture>
 
 <h3><code>tarek@github ~ $ neofetch</code></h3>
