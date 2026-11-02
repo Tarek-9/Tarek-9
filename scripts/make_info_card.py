@@ -12,11 +12,12 @@ ROWS = [
     ("Skills", ["Web & mobile apps, end to end", "Accessible UI (WCAG)",
                 "Design systems (Atomic Design)", "Self-hosting & deployments",
                 "Networking fundamentals"]),
-    ("Methods", ["Scrum · Kanban · Clean Code"]),
+    ("Methods", ["Scrum, Kanban, Clean Code"]),
     ("Training", ["Requirements Engineering (IREB)", "Digital Accessibility (UX/UI)",
-                  "Design Thinking · React Deep Dive", "Agile & Project Management"]),
-    ("Lang", ["DE · EN"]),
+                  "Design Thinking, React Deep Dive", "Agile & Project Management"]),
+    ("Lang", ["German, English"]),
 ]
+# Plain punctuation only on the profile: no dashes, no middle dots.
 
 CARD_W = 482
 PAD = 22

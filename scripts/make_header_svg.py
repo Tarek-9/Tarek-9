@@ -13,10 +13,10 @@ CW = 9  # px per glyph; textLength pins every mono run to it so the cursor math 
 USER, REST = "tarek@github", " ~ $ "
 COMMAND = "whoami"
 NAME = "Tarek El Hussain"
-TAGLINE = "Building software from first idea to production – and keeping it running."
+TAGLINE = "Building software from first idea to production, and keeping it running."
 TYPE_START, TYPE_STEP = 0.6, 0.09  # s
 ENTER = 1.4  # s: the output appears
-OUT = "header.svg"
+OUT = "header"
 
 
 def mono(x, y, s, fill):

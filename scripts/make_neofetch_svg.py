@@ -32,7 +32,7 @@ SPAN = 52  # how many columns wide the torus should render
 FRAMES = 90
 DURATION = 9.0  # seconds per loop: A turns twice, B once, so the last frame meets the first
 PAD = 14.0
-OUT = "neofetch.svg"
+OUT = "neofetch"
 
 
 def frange(stop, step):
