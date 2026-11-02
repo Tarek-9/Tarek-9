@@ -14,6 +14,7 @@
 
 <h3><code>tarek@github ~ $ ls projects/</code></h3>
 
+<p>
 <a href="https://bikelytics.run.place"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="./img/project-bikelytics-dark.svg" />
   <img src="./img/project-bikelytics-light.svg" width="49.5%" alt="Bikelytics: motorcycle history and stats explorer. Opens bikelytics.run.place." />
@@ -30,6 +31,7 @@
   <source media="(prefers-color-scheme: dark)" srcset="./img/project-navo-dark.svg" />
   <img src="./img/project-navo-light.svg" width="49.5%" alt="Navo: workout tracker app, works offline, no account needed. In testing, coming to Google Play." />
 </picture></a>
+</p>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./img/projects-caption-dark.svg" />
@@ -45,9 +47,11 @@
 
 <h3><code>tarek@github ~ $ open</code></h3>
 
+<p>
 <a href="https://www.linkedin.com/in/tarek-elhussain-0b0990354"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="./img/link-linkedin-dark.svg" />
   <img src="./img/link-linkedin-light.svg" height="44" alt="LinkedIn" />
 </picture></a>
+</p>
 
 </div>
