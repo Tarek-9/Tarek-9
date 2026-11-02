@@ -1,15 +1,19 @@
-"""diagram: how a request reaches an app on my server, drawn as an animated network path.
+"""diagram: how a request reaches Bikelytics on my server, drawn as an animated network path.
 
-Static on purpose: no domains (those live on the clickable project cards) and no live
-checks (make_projects_svg.py does those). DNS is its own lookup step, not a hop the
+Named after one real system on purpose: an unnamed "web app, API, database" left viewers
+guessing what it showed. Bikelytics really runs like this (Cloudflare DNS, Traefik via
+Coolify, web + API + Postgres on the VPS). Static: no domains (those live on the
+clickable project cards) and no live checks (make_projects_svg.py does those). DNS is its own lookup step, not a hop the
 request passes through. Packets run under the nodes, so they vanish inside a box as if
 it were processing them.
 """
 
 from theme import BORDER, BRIGHT, DIM, FG, KEY, MUTED, NODE, ACCENT, WIDTH, esc, svg, write
 
-HEIGHT = 250
-MAIN_Y = 140  # the https line from "you" to the proxy
+TITLE = "How Bikelytics runs on my own server"
+TITLE_H = 40  # px the title adds on top; the network below shifts down by this much
+HEIGHT = 250 + TITLE_H
+MAIN_Y = 140  # the https line from "you" to the proxy, before the shift
 OUT = "diagram"
 
 
@@ -46,7 +50,7 @@ def main():
     to_db = f"M{you_r},{MAIN_Y} H{fork_x} V{api_y} H{db_x}"
     line = f'fill="none" stroke="{DIM}"'
 
-    body = (
+    network = (
         # the server boundary: everything inside runs on my own machine
         f'<rect x="296" y="24" width="540" height="210" rx="8" fill="none" stroke="{BORDER}" '
         f'stroke-dasharray="6 5"/>' + small(312, 44, "my server", "start")
@@ -69,6 +73,8 @@ def main():
         + node(db_x, api_y, db_w, "database")
         + small(db_x + db_w / 2, api_y + 34, "persistent data")
     )
+    body = (f'<text x="24" y="34" fill="{BRIGHT}" font-weight="600">{esc(TITLE)}</text>'
+            f'<g transform="translate(0,{TITLE_H})">{network}</g>')
     write(OUT, svg(WIDTH, HEIGHT, body, font_size=14))
 
 

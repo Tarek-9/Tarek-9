@@ -31,7 +31,7 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./img/diagram-dark.svg" />
-  <img src="./img/diagram-light.svg" width="860" alt="How a request reaches my apps: you, DNS lookup, then https to the reverse proxy on my server, which routes to the web app or the API, and the API talks to the database." />
+  <img src="./img/diagram-light.svg" width="860" alt="How Bikelytics runs on my own server: you, DNS lookup, then https to the reverse proxy, which routes to the web app or the API, and the API talks to the database." />
 </picture>
 
 </div>
