@@ -34,10 +34,4 @@
   <img src="./img/diagram-light.svg" width="860" alt="How a request reaches my apps: you, DNS lookup, then https to the reverse proxy on my server, which routes to the web app or the API, and the API talks to the database." />
 </picture>
 
-<h3><code>tarek@github ~ $ open</code></h3>
-
-<p>
-<a href="https://www.linkedin.com/in/tarek-elhussain-0b0990354"><picture><source media="(prefers-color-scheme: dark)" srcset="./img/link-linkedin-dark.svg" /><img src="./img/link-linkedin-light.svg" height="44" alt="LinkedIn" /></picture></a>
-</p>
-
 </div>
