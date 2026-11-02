@@ -1,13 +1,10 @@
-"""Render a neofetch-style info card as a self-contained animated SVG.
+"""The info half of neofetch.svg: name, then skills, methods and training.
 
-Lines fade in on a stagger, then freeze - no loop. CSS lives inside the SVG, which is
-fine: GitHub's sanitizer strips style from README *markdown*, but the SVG is fetched as
-an image and rendered by the browser's SVG engine, which honours everything but scripts.
-
-STATIC=1 emits a frozen frame for previewing.
+Lines fade in on a stagger, then freeze - no loop. `both` (not `forwards`) and no base
+opacity:0, so a renderer that ignores CSS animation still shows the card.
 """
 
-import os
+from theme import ACCENT, DIM, FG, KEY, esc
 
 TITLE = "Tarek El Hussain"
 # Skills, not tools - tools change, these don't. Training mirrors hub's src/data/trainings.tsx.
@@ -21,81 +18,48 @@ ROWS = [
     ("Lang", ["DE · EN"]),
 ]
 
-WIDTH, HEIGHT = 482, 392  # height = ascii-donut.svg's, the panel beside it
+CARD_W = 482
+PAD = 22
+VAL_X = 96
+FONT_SIZE = 15
 LINE = 25  # px between lines
 GAP = 6  # extra px before each new key
-PAD = 22
-KEY_X = 0
-VAL_X = 96
-FONT = "ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
-FONT_SIZE = 15
-BG, BORDER = "#0d1117", "#30363d"
-FG, KEY, ACCENT, DIM = "#c9d1d9", "#58a6ff", "#39d353", "#484f58"
 STEP = 0.07  # seconds between line reveals
-OUT = "info-card.svg"
 
 
-def esc(s):
-    return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-
-
-def main():
-    static = os.environ.get("STATIC") == "1"
+def card(static, height):
+    """Return (style, body) for a CARD_W x height area whose origin is its top-left."""
     body = []
 
     def line(i, content):
-        """Wrap one line so it fades in at its own turn in the stagger."""
         if static:
             return f"<g>{content}</g>"
         return f'<g class="l" style="animation-delay:{i * STEP:.2f}s">{content}</g>'
 
     y = PAD + 24
-    body.append(line(0, f'<text x="{KEY_X}" y="{y}" fill="{ACCENT}" '
-                       f'font-weight="600">{esc(TITLE)}</text>'))
-
+    body.append(line(0, f'<text x="0" y="{y}" fill="{ACCENT}" font-weight="600">{esc(TITLE)}</text>'))
     y += 14
-    body.append(line(1, f'<path d="M0 {y} H{WIDTH - 2 * PAD}" stroke="{DIM}"/>'))
-
+    body.append(line(1, f'<path d="M0 {y} H{CARD_W - 2 * PAD}" stroke="{DIM}"/>'))
     y += 30
     n = 2
     for k, values in ROWS:
         for j, v in enumerate(values):
-            key = f'<text x="{KEY_X}" y="{y}" fill="{KEY}">{esc(k)}</text>' if j == 0 else ""
+            key = f'<text x="0" y="{y}" fill="{KEY}">{esc(k)}</text>' if j == 0 else ""
             body.append(line(n, f'{key}<text x="{VAL_X}" y="{y}" fill="{FG}">{esc(v)}</text>'))
             n += 1
             y += LINE
         y += GAP
     last = y - LINE - GAP
 
-    # `both` (not `forwards`) and no base opacity:0 - the fade is an enhancement, so a
-    # renderer that ignores CSS animation shows the card instead of a blank panel.
-    style = "" if static else (
-        "<style>"
-        "@keyframes fi{from{opacity:0;transform:translateY(4px)}"
-        "to{opacity:1;transform:translateY(0)}}"
-        ".l{animation:fi .45s ease-out both}"
-        "</style>"
-    )
-
-    svg = (
-        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {WIDTH} {HEIGHT}" '
-        f'width="{WIDTH}" height="{HEIGHT}" font-family="{FONT}" font-size="{FONT_SIZE}">'
-        f"{style}"
-        f'<rect x="0.5" y="0.5" width="{WIDTH - 1}" height="{HEIGHT - 1}" rx="8" '
-        f'fill="{BG}" stroke="{BORDER}"/>'
-        f'<g transform="translate({PAD},0)">' + "".join(body) + "</g></svg>"
-    )
-    with open(OUT, "w", encoding="utf-8") as f:
-        f.write(svg)
-
-    # the last row must still sit inside the panel, or the card silently clips
-    assert last + PAD <= HEIGHT, f"content overflows: needs {last + PAD}px, have {HEIGHT}"
+    # the last row must sit inside the panel, or the card silently clips
+    assert last + PAD <= height, f"card overflows: needs {last + PAD}px, have {height}"
     # ~9px per glyph at 15px monospace; a longer value runs past the right border
     longest = max(len(v) for _, values in ROWS for v in values)
-    assert VAL_X + longest * 9 <= WIDTH - 2 * PAD, f"value too wide: {longest} chars"
-    print(f"{OUT}: {len(svg) / 1024:.1f} KB, {WIDTH}x{HEIGHT}, "
-          f"content ends at {last}px{' (static)' if static else ''}")
+    assert VAL_X + longest * 9 <= CARD_W - 2 * PAD, f"value too wide: {longest} chars"
 
-
-if __name__ == "__main__":
-    main()
+    style = "" if static else (
+        "<style>@keyframes fi{from{opacity:0;transform:translateY(4px)}"
+        "to{opacity:1;transform:translateY(0)}}.l{animation:fi .45s ease-out both}</style>"
+    )
+    return style, (f'<g transform="translate({PAD},0)" font-size="{FONT_SIZE}">'
+                   + "".join(body) + "</g>")

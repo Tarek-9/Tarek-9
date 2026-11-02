@@ -1,0 +1,24 @@
+name: Update live status
+
+# Pings the public apps hourly and redraws status.svg. The auto-commit only fires when
+# the file changed: a status flip, or the daily date in its footer. That daily commit
+# also keeps this schedule alive (GitHub disables schedules after 60 quiet days).
+"on":
+  schedule:
+    - cron: "23 * * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  status:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # stdlib only - the runner's python3 is enough, no setup or pip install
+      - run: python3 scripts/make_status_svg.py
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: refresh live status [skip ci]"
+          file_pattern: status.svg

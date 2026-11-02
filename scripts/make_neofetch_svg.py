@@ -1,11 +1,18 @@
-"""Render the classic donut.c torus as a rotating ASCII animation in a self-contained SVG.
+"""neofetch.svg: the classic donut.c torus spinning on the left, the info card on the right.
 
 GitHub strips <script> from READMEs but does play SMIL inside SVGs served via <img>,
-so every frame is baked in as a <g> and cycled with <animate calcMode="discrete">.
+so every donut frame is baked in as a <g> and cycled with <animate calcMode="discrete">.
+One SVG instead of two side by side: a README <table> draws grey cell borders and
+insets its images, so they never line up with the full-width panels above and below.
+
+STATIC=1 emits a frozen frame for previewing. --demo runs the self-checks.
 """
 
 import math
 import os
+
+from make_info_card import CARD_W, card
+from theme import FG, WIDTH, esc, svg, write
 
 # --- geometry (donut.c constants) ---
 R1 = 1.0  # radius of the tube
@@ -25,17 +32,17 @@ SPAN = 52  # how many columns wide the torus should render
 FRAMES = 90
 DURATION = 9.0  # seconds per loop: A turns twice, B once, so the last frame meets the first
 PAD = 14.0
-# Baked-in dark panel: GitHub renders README images on the *viewer's* theme background,
-# so light text on a transparent SVG disappears in light mode.
-FG = "#c9d1d9"
-BG = "#0d1117"
-BORDER = "#30363d"
-OUT = "ascii-donut.svg"
+OUT = "neofetch.svg"
 
 
 def frange(stop, step):
     n = int(stop / step)
     return (i * step for i in range(n))
+
+
+def angles(i):
+    """Seamless loop: A makes two full turns and B one over FRAMES."""
+    return 4 * math.pi * i / FRAMES, 2 * math.pi * i / FRAMES
 
 
 def render_frame(a, b):
@@ -99,15 +106,13 @@ def crop_all(frames):
     return [[l[left : right + 1] for l in lines[top : bottom + 1]] for lines in frames]
 
 
-def esc(s):
-    # NBSP: Chromium collapses leading spaces despite xml:space, and textLength then
-    # stretches each row to full width - the ring turns into a filled block
-    return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace(" ", " ")
-
-
-def angles(i):
-    """Seamless loop: A makes two full turns and B one over FRAMES."""
-    return 4 * math.pi * i / FRAMES, 2 * math.pi * i / FRAMES
+def rows_svg(lines, cols):
+    # textLength pins each row's width so alignment survives any monospace font
+    return "".join(
+        f'<text x="0" y="{(i + 1) * CHAR_H:.0f}" textLength="{cols * CHAR_W:.0f}" '
+        f'lengthAdjust="spacingAndGlyphs">{esc(line)}</text>'
+        for i, line in enumerate(lines)
+    )
 
 
 def frame_svg(index, lines, cols):
@@ -119,51 +124,30 @@ def frame_svg(index, lines, cols):
         values, times = "none;inline", f"0;{lo:.5f}"
     else:
         values, times = "none;inline;none", f"0;{lo:.5f};{hi:.5f}"
-
-    text = "".join(
-        # textLength pins each row's width so alignment survives any monospace font
-        f'<text x="0" y="{(i + 1) * CHAR_H:.0f}" textLength="{cols * CHAR_W:.0f}" '
-        f'lengthAdjust="spacingAndGlyphs">{esc(line)}</text>'
-        for i, line in enumerate(lines)
-    )
     return (
-        f'<g display="none">{text}'
+        f'<g display="none">{rows_svg(lines, cols)}'
         f'<animate attributeName="display" calcMode="discrete" values="{values}" '
         f'keyTimes="{times}" dur="{DURATION}s" repeatCount="indefinite"/></g>'
     )
-
-
-def static_svg(lines, cols):
-    """A single frozen frame - for previewing, since a screenshot of a loop is a lottery."""
-    text = "".join(
-        f'<text x="0" y="{(i + 1) * CHAR_H:.0f}" textLength="{cols * CHAR_W:.0f}" '
-        f'lengthAdjust="spacingAndGlyphs">{esc(line)}</text>'
-        for i, line in enumerate(lines)
-    )
-    return f"<g>{text}</g>"
 
 
 def main():
     static = os.environ.get("STATIC") == "1"
     frames = crop_all([render_frame(*angles(i)) for i in range(FRAMES)])
     rows, cols = len(frames[0]), len(frames[0][0])
-    width, height = cols * CHAR_W + 2 * PAD, rows * CHAR_H + 2 * PAD
-    svg = (
-        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width:.0f} {height:.0f}" '
-        f'width="{width:.0f}" height="{height:.0f}" font-family="ui-monospace,SFMono-Regular,'
-        f'Menlo,Consolas,monospace" font-size="{CHAR_H * 0.82:.1f}" fill="{FG}">'
-        f'<rect x="0.5" y="0.5" width="{width - 1:.0f}" height="{height - 1:.0f}" rx="8" '
-        f'fill="{BG}" stroke="{BORDER}"/>'
-        f'<g transform="translate({PAD:.0f},{PAD:.0f})">'
-        + (static_svg(frames[9], cols) if static
-           else "".join(frame_svg(i, f, cols) for i, f in enumerate(frames)))
-        + "</g></svg>"
-    )
-    with open(OUT, "w", encoding="utf-8") as f:
-        f.write(svg)
-    print(f"{OUT}: {len(svg) / 1024:.0f} KB, {1 if static else FRAMES} frame(s), "
-          f"{cols}x{rows} chars, {width:.0f}x{height:.0f} px"
-          f"{' (static)' if static else ''}")
+    logo_w, height = cols * CHAR_W + 2 * PAD, rows * CHAR_H + 2 * PAD
+    assert logo_w + CARD_W == WIDTH, f"logo {logo_w:.0f} + card {CARD_W} != {WIDTH}"
+
+    style, card_body = card(static, height)
+    logo = (rows_svg(frames[9], cols) if static
+            else "".join(frame_svg(i, f, cols) for i, f in enumerate(frames)))
+    write(OUT, svg(
+        WIDTH, height,
+        f'{style}<g transform="translate({PAD:.0f},{PAD:.0f})" font-size="{CHAR_H * 0.82:.1f}" '
+        f'fill="{FG}">{logo}</g>'
+        f'<g transform="translate({logo_w:.0f},0)">{card_body}</g>',
+    ), f", {1 if static else FRAMES} frame(s), donut {cols}x{rows} chars, {WIDTH}x{height:.0f} px"
+       f"{' (static)' if static else ''}")
 
 
 def demo():
