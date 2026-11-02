@@ -22,8 +22,8 @@ RAMP = ".,-~:;=!*#$@"  # dark -> bright
 COLS, ROWS = 68, 44
 CHAR_W, CHAR_H = 7.0, 14.0  # monospace cell: twice as tall as wide
 SPAN = 52  # how many columns wide the torus should render
-FRAMES = 36
-DURATION = 4.0  # seconds per full rotation
+FRAMES = 90
+DURATION = 9.0  # seconds per loop: A turns twice, B once, so the last frame meets the first
 PAD = 14.0
 # Baked-in dark panel: GitHub renders README images on the *viewer's* theme background,
 # so light text on a transparent SVG disappears in light mode.
@@ -100,7 +100,14 @@ def crop_all(frames):
 
 
 def esc(s):
-    return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+    # NBSP: Chromium collapses leading spaces despite xml:space, and textLength then
+    # stretches each row to full width - the ring turns into a filled block
+    return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace(" ", " ")
+
+
+def angles(i):
+    """Seamless loop: A makes two full turns and B one over FRAMES."""
+    return 4 * math.pi * i / FRAMES, 2 * math.pi * i / FRAMES
 
 
 def frame_svg(index, lines, cols):
@@ -138,14 +145,13 @@ def static_svg(lines, cols):
 
 def main():
     static = os.environ.get("STATIC") == "1"
-    frames = crop_all([render_frame(i * 0.14, i * 0.07) for i in range(FRAMES)])
+    frames = crop_all([render_frame(*angles(i)) for i in range(FRAMES)])
     rows, cols = len(frames[0]), len(frames[0][0])
     width, height = cols * CHAR_W + 2 * PAD, rows * CHAR_H + 2 * PAD
     svg = (
         f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width:.0f} {height:.0f}" '
         f'width="{width:.0f}" height="{height:.0f}" font-family="ui-monospace,SFMono-Regular,'
-        f'Menlo,Consolas,monospace" font-size="{CHAR_H * 0.82:.1f}" fill="{FG}" '
-        f'xml:space="preserve">'
+        f'Menlo,Consolas,monospace" font-size="{CHAR_H * 0.82:.1f}" fill="{FG}">'
         f'<rect x="0.5" y="0.5" width="{width - 1:.0f}" height="{height - 1:.0f}" rx="8" '
         f'fill="{BG}" stroke="{BORDER}"/>'
         f'<g transform="translate({PAD:.0f},{PAD:.0f})">'
@@ -162,7 +168,8 @@ def main():
 
 def demo():
     """Sanity check: frames must draw a ring, and cropping must leave no dead margin."""
-    raw = [render_frame(i * 0.14, i * 0.07) for i in range(FRAMES)]
+    raw = [render_frame(*angles(i)) for i in range(FRAMES)]
+    assert all(math.isclose(math.cos(x), 1.0) for x in angles(FRAMES)), "loop is not seamless"
     assert all(len(f) == ROWS and all(len(l) == COLS for l in f) for f in raw)
 
     frames = crop_all(raw)

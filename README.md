@@ -1,11 +1,5 @@
 <div align="center">
 
-<h3><code>tarek@github ~ $ ./contributions.sh</code></h3>
-
-<img src="./contrib-heatmap.svg" width="860" alt="Contribution heatmap for the last year" />
-
-<br><br>
-
 <h3><code>tarek@github ~ $ neofetch</code></h3>
 
 <table>

@@ -9,18 +9,21 @@ STATIC=1 emits a frozen frame for previewing.
 
 import os
 
-TITLE = "tarek@github"
+TITLE = "Tarek El Hussain"
+# Skills, not tools - tools change, these don't. Training mirrors hub's src/data/trainings.tsx.
 ROWS = [
-    ("OS", "Windows 11 · Debian"),
-    ("Shell", "PowerShell · bash"),
-    ("Editor", "VS Code"),
-    ("Stack", "TypeScript · React · Node"),
-    ("Infra", "Docker · Linux · Traefik"),
-    ("Lang", "DE · EN"),
+    ("Skills", ["Web & mobile apps, end to end", "Accessible UI (WCAG)",
+                "Design systems (Atomic Design)", "Self-hosting & deployments",
+                "Networking fundamentals"]),
+    ("Methods", ["Scrum · Kanban · Clean Code"]),
+    ("Training", ["Requirements Engineering (IREB)", "Digital Accessibility (UX/UI)",
+                  "Design Thinking · React Deep Dive", "Agile & Project Management"]),
+    ("Lang", ["DE · EN"]),
 ]
-SWATCHES = ["#39d353", "#26a641", "#006d32", "#58a6ff", "#bc8cff", "#f778ba", "#ffa657"]
 
-WIDTH, HEIGHT = 482, 378  # 482 + the donut's 378 = 860, the heatmap's width
+WIDTH, HEIGHT = 482, 392  # height = ascii-donut.svg's, the panel beside it
+LINE = 25  # px between lines
+GAP = 6  # extra px before each new key
 PAD = 22
 KEY_X = 0
 VAL_X = 96
@@ -28,7 +31,7 @@ FONT = "ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
 FONT_SIZE = 15
 BG, BORDER = "#0d1117", "#30363d"
 FG, KEY, ACCENT, DIM = "#c9d1d9", "#58a6ff", "#39d353", "#484f58"
-STEP = 0.09  # seconds between line reveals
+STEP = 0.07  # seconds between line reveals
 OUT = "info-card.svg"
 
 
@@ -54,20 +57,15 @@ def main():
     body.append(line(1, f'<path d="M0 {y} H{WIDTH - 2 * PAD}" stroke="{DIM}"/>'))
 
     y += 30
-    for i, (k, v) in enumerate(ROWS):
-        body.append(line(
-            i + 2,
-            f'<text x="{KEY_X}" y="{y}" fill="{KEY}">{esc(k)}</text>'
-            f'<text x="{VAL_X}" y="{y}" fill="{FG}">{esc(v)}</text>',
-        ))
-        y += 32
-
-    y += 22
-    blocks = "".join(
-        f'<rect x="{i * 26}" y="{y}" width="18" height="18" rx="3" fill="{c}"/>'
-        for i, c in enumerate(SWATCHES)
-    )
-    body.append(line(len(ROWS) + 2, blocks))
+    n = 2
+    for k, values in ROWS:
+        for j, v in enumerate(values):
+            key = f'<text x="{KEY_X}" y="{y}" fill="{KEY}">{esc(k)}</text>' if j == 0 else ""
+            body.append(line(n, f'{key}<text x="{VAL_X}" y="{y}" fill="{FG}">{esc(v)}</text>'))
+            n += 1
+            y += LINE
+        y += GAP
+    last = y - LINE - GAP
 
     # `both` (not `forwards`) and no base opacity:0 - the fade is an enhancement, so a
     # renderer that ignores CSS animation shows the card instead of a blank panel.
@@ -90,10 +88,13 @@ def main():
     with open(OUT, "w", encoding="utf-8") as f:
         f.write(svg)
 
-    # the last element must still sit inside the panel, or the card silently clips
-    assert y + 18 + PAD <= HEIGHT, f"content overflows: needs {y + 18 + PAD}px, have {HEIGHT}"
+    # the last row must still sit inside the panel, or the card silently clips
+    assert last + PAD <= HEIGHT, f"content overflows: needs {last + PAD}px, have {HEIGHT}"
+    # ~9px per glyph at 15px monospace; a longer value runs past the right border
+    longest = max(len(v) for _, values in ROWS for v in values)
+    assert VAL_X + longest * 9 <= WIDTH - 2 * PAD, f"value too wide: {longest} chars"
     print(f"{OUT}: {len(svg) / 1024:.1f} KB, {WIDTH}x{HEIGHT}, "
-          f"content ends at {y + 18}px{' (static)' if static else ''}")
+          f"content ends at {last}px{' (static)' if static else ''}")
 
 
 if __name__ == "__main__":
