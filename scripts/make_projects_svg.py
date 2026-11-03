@@ -26,6 +26,9 @@ PROJECTS = [  # (slug, name, description lines, url or None while not public)
     ("ichbinhier", "Ich bin hier", ["Volunteer sign-up for ichbinhier e.V.,",
                                     "a school project built in a team."],
      "https://ichbinhier.work.gd"),
+    ("detour", "Detour", ["School project from an international",
+                          "Design Thinking workshop in Taiwan."],
+     "https://detour.tarek.foo"),
     ("navo", "Navo", ["Workout tracker app.", "Works offline, no account needed."], None),
 ]
 CARD_W, CARD_H = 425, 140
