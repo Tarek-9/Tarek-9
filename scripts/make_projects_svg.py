@@ -22,7 +22,7 @@ PROJECTS = [  # (slug, name, description lines, url or None while not public)
     ("bikelytics", "Bikelytics", ["Motorcycle history and stats explorer."],
      "https://bikelytics.run.place"),
     ("portfolio", "Portfolio", ["My projects, skills and training", "in more detail."],
-     "https://tarek-elhussain.vercel.app"),
+     "https://tarek.foo"),
     ("ichbinhier", "Ich bin hier", ["Volunteer sign-up for ichbinhier e.V.,",
                                     "a school project built in a team."],
      "https://ichbinhier.work.gd"),
