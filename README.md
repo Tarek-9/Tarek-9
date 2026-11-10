@@ -18,7 +18,6 @@
 <p>
 <a href="https://bikelytics.tarek.foo"><picture><source media="(prefers-color-scheme: dark)" srcset="./img/project-bikelytics-dark.svg" /><img src="./img/project-bikelytics-light.svg" width="49.5%" alt="Bikelytics: motorcycle history and stats explorer. Opens bikelytics.tarek.foo." /></picture></a>
 <a href="https://tarek.foo"><picture><source media="(prefers-color-scheme: dark)" srcset="./img/project-portfolio-dark.svg" /><img src="./img/project-portfolio-light.svg" width="49.5%" alt="Portfolio: my projects, skills and training in more detail. Opens tarek.foo." /></picture></a>
-<a href="https://ichbinhier.work.gd"><picture><source media="(prefers-color-scheme: dark)" srcset="./img/project-ichbinhier-dark.svg" /><img src="./img/project-ichbinhier-light.svg" width="49.5%" alt="Ich bin hier: volunteer sign-up for ichbinhier e.V., a school project built in a team. Opens ichbinhier.work.gd." /></picture></a>
 <a href="https://detour.tarek.foo"><picture><source media="(prefers-color-scheme: dark)" srcset="./img/project-detour-dark.svg" /><img src="./img/project-detour-light.svg" width="49.5%" alt="Detour: school project from an international Design Thinking workshop in Taiwan. Opens detour.tarek.foo." /></picture></a>
 <a href="#tarekgithub---ls-projects"><picture><source media="(prefers-color-scheme: dark)" srcset="./img/project-navo-dark.svg" /><img src="./img/project-navo-light.svg" width="49.5%" alt="Navo: workout tracker app, works offline, no account needed. In testing, coming to Google Play." /></picture></a>
 </p>
